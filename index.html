@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Web Dev Crossword</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <link rel = "stylesheet" href="style.css">
+    <link rel="stylesheet" href="style.css">
     <script src="script.js" defer></script>
     
 </head>
@@ -15,9 +15,15 @@
     <h1>WEB DEV <em>CROSSWORD</em></h1>
 </header>
 
-<div id="val-log"></div>
 
+
+<div id="val-log"></div>
+<div id="success" class="hidden">
+        <h2>✔ Issue Resolved</h2>
+        <p>FLAG: crossword_COMPLETE_9021</p>
+    </div>
 <div class="card">
+    
     <div class="main-container">
         <div id="grid-wrap"><div id="grid"></div></div>
         <div class="divider"></div>
@@ -31,12 +37,12 @@
 
     <div class="controls">
         <button class="btn-check"     onclick="checkAnswers()">Check Answers</button>
+        <button class="btn-secondary" onclick="revealAll()">Reveal</button>
         <button class="btn-secondary" onclick="clearAll()">Clear</button>
     </div>
 
     <div id="status"></div>
+
 </div>
-
-
 </body>
 </html>
