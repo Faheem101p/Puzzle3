@@ -245,7 +245,7 @@
             .divider { display: none; }
             #grid-wrap { display: flex; justify-content: center; overflow-x: auto; -webkit-overflow-scrolling: touch; }
             #grid { --cell: min(6.1vw, 32px); }
-            .clues-pane { max-height: none; overflow-y: visible; }
+            .clues-pane { max-height: none; overflow-y: visible; overflow-anchor: none; }
         }
         @media (min-width: 621px) and (max-width: 840px) {
             .main-container { flex-direction: column; align-items: stretch; }
