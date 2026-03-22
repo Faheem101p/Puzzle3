@@ -116,6 +116,8 @@ for (let r = 0; r < ROWS; r++) {
                 }
             });
             inp.addEventListener('focus', () => setHighlight(r, c));
+            inp.addEventListener('blur', () => {
+            });
             inp.addEventListener('keydown', e => {
                 switch (e.key) {
                     case 'Backspace':   e.preventDefault(); inp.value ? (inp.value = '') : stepInWord(-1); break;
@@ -182,7 +184,12 @@ function setHighlight(r, c) {
     }
     cellEl(r, c)?.classList.add('cell-hl');
     const clueEl = document.getElementById(`clue-${activeDefIdx}`);
-    if (clueEl) { clueEl.classList.add('selected'); clueEl.scrollIntoView({ behavior: 'smooth', block: 'nearest' }); }
+    if (clueEl) {
+        clueEl.classList.add('selected');
+        if (!('ontouchstart' in window)) {
+            clueEl.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        }
+    }
 }
 function stepInWord(step) {
     if (activeDefIdx === null) return;
@@ -197,7 +204,8 @@ function stepInWord(step) {
     stepAbs(nr, nc);
 }
 function stepAbs(r, c) {
-    document.querySelector(`input[data-r="${r}"][data-c="${c}"]`)?.focus();
+    const el = document.querySelector(`input[data-r="${r}"][data-c="${c}"]`);
+    if (el) el.focus({ preventScroll: true });
 }
 function cycleWord(dir) {
     const ordered = WORD_DEFS
@@ -240,6 +248,7 @@ function checkAnswers() {
         successEl.classList.add('hidden');
     }
 }
+
 function clearAll() {
     document.querySelectorAll('input').forEach(inp => {
         inp.value = '';
